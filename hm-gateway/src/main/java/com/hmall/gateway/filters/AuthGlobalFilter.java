@@ -43,9 +43,11 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
       response.setRawStatusCode(401);
       return response.setComplete();
     }
+    String userInfo = userId.toString();
     // 如果有效，放行
-    System.out.println("userId: " + userId);
-    return chain.filter(exchange);
+    ServerWebExchange swe =
+        exchange.mutate().request(builder -> builder.header("user-info", userInfo)).build();
+    return chain.filter(swe);
   }
 
   private boolean isExclude(String path) {
