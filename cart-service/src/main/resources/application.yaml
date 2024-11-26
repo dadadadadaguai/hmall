@@ -1,7 +1,14 @@
 server:
   port: 8082
+  tomcat:
+#    threads:
+#      max: 25
+#    accept-count: 25
+#    max-connections: 100
 feign:
   okhttp:
+    enabled: true
+  sentinel:
     enabled: true
 hm:
   db:
@@ -9,3 +16,9 @@ hm:
   swagger:
     title: "黑马商城购物车服务接口服务"
     package: "com.hmall.cart.controller"
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8090
+      http-method-specify: true # 是否开启设置请求方式设为资源名称
