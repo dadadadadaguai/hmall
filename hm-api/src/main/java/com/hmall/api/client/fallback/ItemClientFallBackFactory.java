@@ -3,6 +3,7 @@ package com.hmall.api.client.fallback;
 import com.hmall.api.client.ItemClient;
 import com.hmall.api.domain.dto.ItemDTO;
 import com.hmall.api.domain.dto.OrderDetailDTO;
+import com.hmall.common.exception.BizIllegalException;
 import com.hmall.common.utils.CollUtils;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ItemClientFallBackFactory implements FallbackFactory<ItemClient> {
       @Override
       public void deductStock(List<OrderDetailDTO> items) {
         log.error("扣除库存失败", cause);
-        throw new RuntimeException(cause);
+        throw new BizIllegalException(cause);
       }
     };
   }
