@@ -1,6 +1,6 @@
 server:
   port: 8082
-  tomcat:
+#  tomcat:
 #    threads:
 #      max: 25
 #    accept-count: 25
